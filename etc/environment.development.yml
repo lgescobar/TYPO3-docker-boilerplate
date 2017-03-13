@@ -10,6 +10,12 @@
 # PHP Debugger (xdebug|blackfire|none)
 
 PHP_DEBUGGER=xdebug
+XDEBUG_REMOTE_HOST=10.254.254.254
+XDEBUG_REMOTE_AUTOSTART=1
+XDEBUG_REMOTE_CONNECT_BACK=0
+
+# This line isn't necessary but I keep it just a reminder to name the server properly in PhpStorm
+PHP_IDE_CONFIG="serverName=docker"
 
 #######################################
 # Context environment

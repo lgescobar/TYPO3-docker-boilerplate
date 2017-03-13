@@ -54,6 +54,8 @@ services:
       #dockerfile: Percona-5.7.Dockerfile
     ports:
       - 13306:3306
+    volumes:
+      - ./db/:/var/lib/mysql
     volumes_from:
       - storage
     env_file:
@@ -178,11 +180,16 @@ services:
   #######################################
   # phpMyAdmin
   #######################################
-  #phpmyadmin:
-  #  image: phpmyadmin/phpmyadmin
-  #  links:
-  #    - mysql
-  #  environment:
+  phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      links:
+        - mysql
+      ports:
+        - "8080:80"
+      environment:
+        - PMA_HOST=mysql
+        - PMA_USER=dev
+        - PMA_PASSWORD=dev
   #    - PMA_ARBITRARY=1
   #    - VIRTUAL_HOST=pma.boilerplate.docker
   #    - VIRTUAL_PORT=80
