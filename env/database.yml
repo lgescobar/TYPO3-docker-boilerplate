@@ -1,0 +1,17 @@
+#######################################
+# Environment Configuration
+#  - feel free to edit -
+# -> for most changes you only have to
+#         docker-compose up -d
+#    to apply them
+#######################################
+
+# Database ENV variables
+MYSQL_ROOT_PASSWORD=typo3
+MYSQL_DATABASE=typo3kurs
+MYSQL_USER=typo3
+MYSQL_PASSWORD=typo3
+
+# phpMyAdmin access
+PMA_USER=root
+PMA_PASSWORD=typo3
