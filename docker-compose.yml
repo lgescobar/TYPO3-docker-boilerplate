@@ -69,7 +69,8 @@ services:
 #      context: docker/storage/
 #    restart: always
     volumes:
-      - ./app:/var/www
+      - /var/www/html
+#      - ./app:/var/www
 #      - ./app/web:/usr/share/nginx/html
 #volumes:
 #  - db_data: /db
