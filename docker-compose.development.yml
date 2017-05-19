@@ -82,15 +82,16 @@ services:
   # Solr server
   #######################################
   #solr:
-  #  build:
-  #    context: docker/solr/
-  #  volumes_from:
-  #    - storage
+  #  image: webdevops/typo3-solr:6.0
+  #  image: webdevops/typo3-solr:5.0
+  #  image: webdevops/typo3-solr:4.0
+  #  image: webdevops/typo3-solr:3.1
+  #  ports:
+  #    - 18983:8983
   #  env_file:
   #    - etc/environment.yml
   #    - etc/environment.development.yml
   #  environment:
-  #    - SOLR_STORAGE=/storage/solr/server-master/
   #    - VIRTUAL_HOST=solr.boilerplate.docker
   #    - VIRTUAL_PORT=8983
 

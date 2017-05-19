@@ -14,6 +14,9 @@
 #  debian-9     -> PHP 7.0         (stretch)
 #
 # Apache:
+#   webdevops/php-apache-dev:5.6
+#   webdevops/php-apache-dev:7.0
+#   webdevops/php-apache-dev:7.1
 #   webdevops/php-apache-dev:ubuntu-12.04
 #   webdevops/php-apache-dev:ubuntu-14.04
 #   webdevops/php-apache-dev:ubuntu-15.04
@@ -26,6 +29,9 @@
 #   webdevops/php-apache-dev:debian-9
 #
 # Nginx:
+#   webdevops/php-nginx-dev:5.6
+#   webdevops/php-nginx-dev:7.0
+#   webdevops/php-nginx-dev:7.1
 #   webdevops/php-nginx-dev:ubuntu-12.04
 #   webdevops/php-nginx-dev:ubuntu-14.04
 #   webdevops/php-nginx-dev:ubuntu-15.04
@@ -49,11 +55,11 @@ ENV PROVISION_CONTEXT "development"
 
 # Deploy scripts/configurations
 COPY etc/             /opt/docker/etc/
-COPY provision/       /opt/docker/provision/
 
-RUN /opt/docker/bin/provision run --tag bootstrap --role boilerplate-main --role boilerplate-main-development --role boilerplate-deployment \
-    && /opt/docker/bin/bootstrap.sh
+RUN ln -sf /opt/docker/etc/cron/crontab /etc/cron.d/docker-boilerplate \
+    && chmod 0644 /opt/docker/etc/cron/crontab \
+    && echo >> /opt/docker/etc/cron/crontab \
+    && ln -sf /opt/docker/etc/php/development.ini /opt/docker/etc/php/php.ini
 
 # Configure volume/workdir
-RUN mkdir -p /app/
 WORKDIR /app/

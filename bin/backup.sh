@@ -26,8 +26,8 @@ case "$1" in
             fi
 
             logMsg "Starting MySQL backup..."
-            source "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/../etc/environment.yml"
-            dockerExec mysqldump -h mysql -u root -p"${MYSQL_ROOT_PASSWORD}" --opt --single-transaction --events --all-databases --routines --comments | bzip2 > "${BACKUP_DIR}/${BACKUP_MYSQL_FILE}"
+            MYSQL_ROOT_PASSWORD=$(dockerExecMySQL printenv MYSQL_ROOT_PASSWORD)
+            dockerExecMySQL sh -c "MYSQL_PWD=\"${MYSQL_ROOT_PASSWORD}\" mysqldump -h mysql -uroot --opt --single-transaction --events --all-databases --routines --comments" | bzip2 > "${BACKUP_DIR}/${BACKUP_MYSQL_FILE}"
             logMsg "Finished"
         else
             echo " * Skipping mysql backup, no such container"
